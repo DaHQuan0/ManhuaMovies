@@ -1,0 +1,89 @@
+.comment-container {
+    margin-bottom: 20px;
+}
+
+.comment-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.comment-text {
+    margin-bottom: 10px;
+}
+
+.interactions {
+    display: flex;
+    align-items: center;
+}
+
+.like-button,
+.dislike-button,
+.reply-button {
+    background-color: #3c3d3a;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.likes-count,
+.dislikes-count {
+    margin-right: 10px;
+}
+
+.reply-container {
+    margin-left: 30px;
+    border-left: 1px solid #ccc;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.reply-form {
+    margin-left: 30px;
+}
+
+.reply-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.reply-submit-button {
+    background-color: #3c3d3a;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-section {
+    margin-top: 20px;
+}
+
+.sort-options {
+    margin-top: 10px;
+}
+
+.sort-options label {
+    margin-right: 5px;
+}
+
+.sort-options select {
+    padding: 5px;
+}
