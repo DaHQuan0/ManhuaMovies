@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phim lẻ</title>
+    <link rel="stylesheet" href="PhimLe.css">
+</head>
+<body>
+    <header>
+        <!-- Phần header của trang -->
+    </header>
+    
+    <nav>
+        <!-- Phần menu và điều hướng của trang -->
+    </nav>
+    
+    <main>
+        <h1>Phim lẻ</h1>
+        
+        <div class="filter-section">
+            <h2>Lọc phim</h2>
+            
+            <div class="filter-options">
+                <div class="filter-option">
+                    <label>Sắp xếp:</label>
+                    <select>
+                        <option value="nam-san-xuat">Theo năm sản xuất</option>
+                        <option value="luot-xem">Theo lượt xem</option>
+                        <option value="ten-phim">Theo tên phim</option>
+                    </select>
+                </div>
+                
+                <div class="filter-option">
+                    <label>Thể loại:</label>
+                    <select>
+                        <option value="hanh-dong">Hành động</option>
+                        <option value="kinh-di">Kinh dị</option>
+                        <option value="tinh-cam">Tình cảm</option>
+                        <!-- Thêm các thể loại khác -->
+                    </select>
+                </div>
+                
+                <div class="filter-option">
+                    <label>Quốc gia:</label>
+                    <select>
+                        <option value="quoc-gia-1">Quốc gia 1</option>
+                        <option value="quoc-gia-2">Quốc gia 2</option>
+                        <!-- Thêm các quốc gia khác -->
+                    </select>
+                </div>
+                
+                <div class="filter-option">
+                    <label>Năm sản xuất:</label>
+                    <select>
+                        <option value="nam-san-xuat-1">Năm sản xuất 1</option>
+                        <option value="nam-san-xuat-2">Năm sản xuất 2</option>
+                        <!-- Thêm các năm sản xuất khác -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="movie-list">
+            <!-- Danh sách phim lẻ -->
+            <div class="movie-item">
+                <div class="movie-image">
+                    <img src="movie1.jpg" alt="Phim 1">
+                    <div class="latest-episode">Tập 10</div>
+                </div>
+                <h2>Tên phim 1</h2>
+            </div>
+            
+            <div class="movie-item">
+                <div class="movie-image">
+                    <img src="movie2.jpg" alt="Phim 2">
+                    <div class="latest-episode">Tập 5</div>
+                </div>
+                <h2>Tên phim 2</h2>
+            </div>
+            
+            <!-- Thêm các phần tử phim khác tương tự -->
+        </div>
+        
+        <div class="pagination">
+            <button class="prev-button">Trang trước</button>
+            <input type="number" class="page-input" min="1" value="1">
+            <button class="go-button">Đi</button>
+            <button class="next-button">Trang sau</button>
+        </div>
+    </main>
+    
+    <footer>
+        <!-- Phần footer của trang -->
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
