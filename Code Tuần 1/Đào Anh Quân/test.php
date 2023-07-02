@@ -16,7 +16,7 @@
         <nav class="nav container">
             <div class="all-bot all">
                 <a href="Header.html" class="logo">
-                    <img src="tải xuống (1).jpg" alt="Logo" class="img-page"/>
+                    <img src="" alt="Logo" class="img-page"/>
                 </a>
             </div>
             <ul class="ul-right">
@@ -44,9 +44,9 @@
             </ul>
             <div class="headitems ">
                 <div id="advc-menu" class="search">
-                    <form method="post" id="searchform" action="">
-                        <input type="text" placeholder="Nhập thông tin tìm kiếm" name="s" id="s" value="" autocomplete="off">
-                        <button class="search-button" type="submit">
+                    <form method="post">
+                        <input type="text" placeholder="Nhập thông tin tìm kiếm" name="noidung" autocomplete="off">
+                        <button class="search-button" type="submit" name="btn">
                             <span class="fas fa-search"></span>
                         </button>
                     </form>
@@ -60,3 +60,27 @@
   </div>
 </body>
 </html>
+
+<?php 
+    include "connect.php";
+    $noidung = "";
+    
+    if(isset($_POST['btn'])){
+       $noidung = $_POST['noidung'];
+    } else {
+        echo $noidung = "false";
+    }
+?>
+
+<?php 
+    $dbname = "SELECT name FROM films WHERE name LIKE ?";
+    $result = mysqli_query($conn, $dbname);
+    while ($row = mysqli_fetch_array($result)){
+?>
+    <br>
+    <main>
+        <tr>
+            <td style="color: black; margin-top: 100px"><?php echo $row["name"] ?></td>
+        </tr>
+    </main>
+<?php } ?>
