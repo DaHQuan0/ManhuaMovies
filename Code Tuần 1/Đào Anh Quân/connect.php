@@ -15,5 +15,5 @@
 // Thiết lập bộ ký tự là UTF-8
     mysqli_query($conn, "SET NAMES 'utf8'");
 
-    echo ".";
+    echo "KNTK.";
 ?>

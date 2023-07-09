@@ -7,17 +7,12 @@
     list-style-type: none;
 }
 body header div nav ul li a{
-    box-sizing: border-box;
     color: var(--fcolor);
-    text-decoration: none;
-    list-style-type: none;
 }
 body header div nav div a img {
-    box-sizing: border-box;
     color: var(--fcolor);
-    text-decoration: none;
-    list-style-type: none;
 }
+
 .bgr{
     background-color: rgb(60, 62, 63);
 }
@@ -175,23 +170,4 @@ input[type=text]:focus {
     margin: 0 1px;
     font-size: 14px;
     border-radius: 0 5px 5px 0;
-}
-
-.film {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.film-img {
-    width: 200px;
-    height: auto;
-    margin-right: 20px;
-    margin-top: 100px;
-}
-
-.film-title {
-    font-size: 24px;
-    font-weight: bold;
 }

@@ -7,6 +7,7 @@
     <title>ManhuaMovies</title>
     <link rel="icon" type="image/x-icon" href="#">
     <link rel="stylesheet" href="./TrangChu.css">
+    <link rel="stylesheet" href="./search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -44,9 +45,9 @@
                 </ul>
                 <div class="headitems ">
                     <div id="advc-menu" class="search">
-                        <form method="get" id="searchform" action="">
-                            <input type="text" placeholder="Tìm kiếm..." name="s" id="s" value="" autocomplete="off">
-                            <button class="search-button" type="submit">
+                        <form method="post">
+                            <input type="text" placeholder="Nhập thông tin tìm kiếm" name="noidung" autocomplete="off">
+                            <button class="search-button" type="submit" name="btn">
                                 <span class="fas fa-search"></span>
                             </button>
                         </form>
@@ -55,9 +56,5 @@
             </nav>
         </div>
     </header>
-    <div class="main all" style="position: absolute; top: 125px;width: 70%;height: auto;">
-        <p>viết thân vào đây</p>
-
-    </div>
 </body>
 </html>
