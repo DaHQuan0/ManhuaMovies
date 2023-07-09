@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ManhuaMovies</title>
-  <link rel="icon" type="image/x-icon" href="#">
   <link rel="stylesheet" href="./TrangChu.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -21,7 +18,7 @@
             </div>
             <ul class="ul-right">
                 <li class="li-setup"><a href="./TrangChu.html">Kho phim</a></li>
-                <li class="li-setup"><a href="./PhimLe.html">Phim lẻ</a></li> <!-- Thêm phần này -->
+                <li class="li-setup"><a href="./PhimLe.html">Phim lẻ</a></li>
                 <li class="li-setup"><a href="./PhimBo.html">Phim bộ</a></li>
                 <li class="li-setup user"><a href="">Thể loại</a>
                     <div class="dropdown-content">
@@ -73,14 +70,20 @@
 ?>
 
 <?php 
-    $dbname = "SELECT name FROM films WHERE name LIKE ?";
-    $result = mysqli_query($conn, $dbname);
-    while ($row = mysqli_fetch_array($result)){
+    $dbname = "SELECT art, name FROM films WHERE name LIKE ?";
+    $stmt = mysqli_prepare($conn, $dbname);
+    mysqli_stmt_bind_param($stmt, "s", $noidung);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
 ?>
-    <br>
-    <main>
-        <tr>
-            <td style="color: black; margin-top: 100px"><?php echo $row["name"] ?></td>
-        </tr>
-    </main>
-<?php } ?>
+        <div class="film">
+            <img src="<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
+            <h3 class="film-title"><?php echo $row["name"] ?></h3>
+        </div>
+<?php } else {
+        echo "Không tìm thấy kết quả phù hợp.";
+    }
+?>
