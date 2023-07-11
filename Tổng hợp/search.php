@@ -26,7 +26,5 @@
             <img src="<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
             <h3 class="film-title"><?php echo $row["name"] ?></h3>
         </div>
-<?php } else {
-        echo ".";
-    }
+<?php }
 ?>
