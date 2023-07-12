@@ -3,7 +3,7 @@ var swiper = new Swiper(".popular-content", {
     slidesPerView:1,
     spaceBetween: 10,
     autoplay: {
-      delay: 755500,
+      delay: 5500,
       disableOnInteraction: false
     },
     pagination: {
@@ -37,3 +37,20 @@ var swiper = new Swiper(".popular-content", {
         },
     },
 });
+//Show Video
+let playButton = document.querySelector('.play-movie');
+let video = document.querySelector('.video-container');
+let myvideo = document.querySelector('#myvideo');
+let closebtn = document.querySelector('.close-video');
+
+playButton.onlick = () => {
+    video.classList.add(".show-video");
+    //Auto Play When Click On Button
+    myvideo.play();
+};
+
+closebtn.onlick = () => {
+    video.classList.remove("#myvideo");
+    //Pause On Close Video
+    myvideo.pause();
+}
