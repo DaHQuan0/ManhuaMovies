@@ -42,12 +42,12 @@
             <!-- Search Box-->
             <div class="search-box">
                 <form method="post" action="search.php" style="display: flex;">
-                    <input type="text" name="noidung" autocomplete="off" placeholder="Search Movies">
+                <input type="text" name="noidung" id="search-input" autocomplete="off" placeholder="Search Movies">
                     <button class="search-button" type="submit" name="btn">
                         <i class='bx bx-search'></i> 
                     </button>
                 </form>
-            </div>
+            </div>  
             <!-- User -->
             <a href="#" class="user">
                 <img src="img/images.png" alt="" class="user-img">

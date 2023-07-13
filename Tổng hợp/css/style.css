@@ -86,6 +86,10 @@ header{
 .search-box .bx:hover {
     color: var(--main-color);
 }
+.search-button {
+    background-color: #2d2e37;
+    border: none;
+}
 #search-input{
     width: 100%;
     border: none;
