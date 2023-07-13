@@ -1,21 +1,12 @@
-<!-- Trang search.php -->
 <?php 
-    require_once 'Config/connect.php';
+    include "Header.html";
+    include "connect.php";
     $noidung = "";
     
     if(isset($_POST['btn'])){
        $noidung = $_POST['noidung'];
-    } 
+    }
 ?>
-
-
-<form method="post" action="search.php" style="display: flex;">
-                    <input type="text" name="noidung" id="search-input" autocomplete="off" placeholder="Search Movies">
-                    <button class="search-button" type="submit" name="btn">
-                        <i class='bx bx-search'></i> 
-                    </button>
-                </form>
-
 
 <?php 
     $dbname = "SELECT art, name FROM films WHERE name LIKE ?";
@@ -26,7 +17,11 @@
     $row = mysqli_fetch_assoc($result);
 
     if ($row) {
-?>
+?>      
+        <br>
+        <br>
+        <br>
+        <br><br>
         <div class="film">
             <img src="<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
             <h3 class="film-title"><?php echo $row["name"] ?></h3>

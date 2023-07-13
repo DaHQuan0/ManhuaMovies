@@ -1,17 +1,16 @@
-<!-- Trang search.php -->
 <?php 
-    require_once 'Config/connect.php';
+    require_once 'config/connect.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ManhwaMovies</title>
     <!-- Link to CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/TrangChu.css">
     <link rel="stylesheet" href="./search.css">
     <!-- Link Swiper CSS-->
     <link rel="stylesheet" href="css/cdn.jsdelivr.net_npm_swiper@10.0.4_swiper-bundle.min.css">
@@ -19,9 +18,11 @@
     <link rel="shortcut icon" href="img/fav-icon.png" type="image/x-icon">
     <!-- Box Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 <body>
-<header>
+    <!-- Header -->
+    <header>
         <!-- Nav -->
         <div class="nav container">
             <!-- Logo -->
@@ -31,12 +32,12 @@
             <!-- Search Box-->
             <div class="search-box">
                 <form method="post" action="search.php" style="display: flex;">
-                <input type="text" name="noidung" id="search-input" autocomplete="off" placeholder="Search Movies">
+                    <input type="text" name="noidung" id="search-input" autocomplete="off" placeholder="Search Movies">
                     <button class="search-button" type="submit" name="btn">
                         <i class='bx bx-search'></i> 
                     </button>
                 </form>
-            </div>  
+            </div>
             <!-- User -->
             <a href="#" class="user">
                 <img src="img/images.png" alt="" class="user-img">
@@ -70,24 +71,5 @@
             </div>
         </div>
     </header>
-
-    <?php if(isset($_POST['btn'])) {
-        $noidung = $_POST['noidung'];
-        $dbname = "SELECT art, name FROM films WHERE name LIKE ?";
-        $stmt = mysqli_prepare($conn, $dbname);
-        mysqli_stmt_bind_param($stmt, "s", $noidung);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($result);
-    ?>
-        <br>
-        <br>
-        <br>
-        <br><br>
-        <div class="film" style="margin-left: 30%; margin-top: 140px;">
-            <img src="<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
-            <h3 class="film-title"><?php echo $row["name"] ?></h3>
-        </div>
-    <?php } ?>
 </body>
 </html>
