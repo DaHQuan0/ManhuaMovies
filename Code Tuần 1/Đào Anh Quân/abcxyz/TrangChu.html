@@ -11,52 +11,37 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header class="header bgr">
-    <div class="all">                    
-        <nav class="nav container">
-            <div class="all-bot all">
-                <a href="#" class="logo">
-                    <img src="" alt="Logo" class="img-page"/>
-                </a>
-            </div>
-            <ul class="ul-right">
-                <li class="li-setup"><a href="./TrangChu.html">Kho phim</a></li>
-                <li class="li-setup"><a href="./PhimLe.html">Phim lẻ</a></li> <!-- Thêm phần này -->
-                <li class="li-setup"><a href="./PhimBo.html">Phim bộ</a></li>
-                <li class="li-setup user"><a href="">Thể loại</a>
-                    <div class="dropdown-content">
-                        <a href=""><button class="btn btn-primary hidden mbtn">Cổ đại</button></a>
-                        <a href=""><button class="btn btn-primary hidden mbtn">Chuyển sinh</button></a>
-                        <a href=""><button class="btn btn-primary hidden mbtn">Xuyên không</button></a>
-                        <a href=""><button class="btn btn-primary hidden mbtn">Mạt thế</button></a>
-                    </div>
-                </li>
-                <li class="li-setup user"><a href="..."><i class="fa-solid fa-user"></i>Tài Khoản</a>
-                    <div class="dropdown-content">
-                        <a href="...">
-                            <button class="btn btn-primary hidden mbtn">Đăng nhập</button>
-                        </a>
-                        <a href="...">
-                            <button class="btn btn-primary hidden mbtn">Đăng ký</button>
-                        </a>   
-                    </div>
-                </li>
-            </ul>
-            <div class="headitems ">
-                <div id="advc-menu" class="search">
-                    <form method="post" id="searchform" action="">
-                        <input type="text" placeholder="Nhập thông tin tìm kiếm" name="s" id="s" value="" autocomplete="off">
-                        <button class="search-button" type="submit">
-                            <span class="fas fa-search"></span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
-  </header>
-  <div class="main all">
-    
-  </div>
+    <body>
+        <header>
+            <h1>Tên phim</h1>
+            <nav>
+                <ul>
+                    <li><a href="#overview">Tổng quan</a></li>
+                    <li><a href="#trailer">Trailer</a></li>
+                    <li><a href="#tickets">Vé</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section id="overview">
+                <h2>Tổng quan</h2>
+                <p>Đây là một đoạn mô tả ngắn về phim, bao gồm các chi tiết như tác giả, diễn viên, thể loại, nội dung tóm tắt, và lịch chiếu.</p>
+            </section>
+            
+            <section id="trailer">
+                <h2>Trailer</h2>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </section>
+            
+            <section id="tickets">
+                <h2>Vé</h2>
+                <p>Liên kết đến trang mua vé hoặc xem phim trực tuyến tại các dịch vụ như CGV, Lotte Cinema, Netflix, vv.</p>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Bản quyền © 2023 Tên công ty sản xuất phim</p>
+        </footer>
 </body>
 </html>

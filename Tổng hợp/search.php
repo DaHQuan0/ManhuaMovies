@@ -1,6 +1,6 @@
 <!-- Trang search.php -->
 <?php 
-    require_once 'Config/connect.php';
+    require_once 'config/connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -85,8 +85,8 @@
         <br>
         <br><br>
         <div class="film" style="margin-left: 30%; margin-top: 140px;">
-            <img src="<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
-            <h3 class="film-title"><?php echo $row["name"] ?></h3>
+            <img src="img/<?php echo $row["art"] ?>" alt="<?php echo $row["name"] ?>" class="film-img">
+            <h1 class="film-title"><?php echo $row["name"] ?></h1>
         </div>
     <?php } ?>
 </body>
