@@ -1,6 +1,6 @@
 <!-- Trang search.php -->
 <?php 
-    require_once 'config/connect.php';
+    require_once 'Config/connect.php';
 ?>
 
 <!DOCTYPE html>
