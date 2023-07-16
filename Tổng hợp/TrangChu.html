@@ -14,6 +14,7 @@
     <link rel="shortcut icon" href="img/fav-icon.png" type="image/x-icon">
     <!-- Box Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="dropdown.css">
 
 </head>
 <body>
@@ -27,10 +28,10 @@
             </a>
             <!-- Search Box-->
             <div class="search-box">
-                <form method="post" action="search.php" style="display: flex;">
-                    <input type="text" name="noidung" id="search-input" autocomplete="off" placeholder="Search Movies">
+                <form method="post" style="display: flex;">
+                    <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
                     <button class="search-button" type="submit" name="btn">
-                        <i class='bx bx-search'></i> 
+                        <a href="Search.html"><i class='bx bx-search'></i> </a>
                     </button>
                 </form>
             </div>
@@ -48,18 +49,44 @@
                     <i class='bx bxs-hot' ></i>
                     <span class="nav-link-title">Thịnh hành</span>
                 </a>
-                <a href="#home" class="nav-link">
+                <a href="PhimBo.php" class="nav-link">
                     <i class='bx bxs-movie' ></i>
                     <span class="nav-link-title">Phim bộ</span>
                 </a>
-                <a href="#home" class="nav-link">
+                <a href="PhimLe.php" class="nav-link">
                     <i class='bx bxs-film'></i>
                     <span class="nav-link-title">Phim lẻ</span>
-                </a>
-                <a href="#home" class="nav-link">
-                    <i class='bx bx-category' ></i>
-                    <span class="nav-link-title">Thể loại</span>
-                </a>
+                    <div class="dropdown-toggle-container" id="genre-dropdown-toggle">
+                        <a href="#" class="nav-link dropdown">
+                            <i class="bx bx-category nav-link-icon"></i>
+                            <span class="nav-link-title">Thể loại</span>
+                         </a>
+                         <div class="dropdown-content">
+                         <div class="column">
+                             <a href="Theloai.php?genre=Hài hước">Hài hước</a>
+                             <a href="Theloai.php?genre=Hành động">Hành động</a>
+                             <a href="Theloai.php?genre=Phiêu lưu">Phiêu lưu</a>
+                             <a href="Theloai.php?genre=Tình cảm">Tình cảm</a>
+                             <a href="Theloai.php?genre=Học đường">Học đường</a>
+                             <a href="Theloai.php?genre=Võ thuật">Võ thuật</a>
+                             <a href="Theloai.php?genre=Tài liệu">Tài liệu</a>
+                 
+                         </div>
+                         <div class="column">
+                             <a href="Theloai.php?genre=Viễn tưởng">Viễn tưởng</a>
+                             <a href="Theloai.php?genre=Hoạt hình">Hoạt hình</a>
+                             <a href="Theloai.php?genre=Thể thao">Thể thao</a>
+                             <a href="Theloai.php?genre=Âm nhạc">Âm nhạc</a>
+                             <a href="Theloai.php?genre=Gia đình">Gia đình</a>
+                             <a href="Theloai.php?genre=Kinh dị">Kinh dị</a>
+                             <a href="Theloai.php?genre=Tâm lý">Tâm lý</a>
+                         </div>
+                         <!-- Thêm các thể loại khác tương ứng với các option -->
+                     </div>
+                 
+                     </div>
+                
+                 
                 <a href="#home" class="nav-link">
                     <i class='bx bx-heart'></i>
                     <span class="nav-link-title">Yêu thích</span>
@@ -133,7 +160,7 @@
                 <!-- Movies Box 4 -->
                 <div class="swiper-slide">
                     <div class="movie-box">
-                        <img src="img/bach_luyen_thanh_than.jpg" alt="" class="movie-box-img">
+                        <img src="img/Bách Luyện Thành Thần.jpg" alt="" class="movie-box-img">
                         <div class="box-text">
                             <h2 class="movie-title">Bách luyện thành thần</h2>
                         <span class="movie-type">Hành Động, Phiêu Lưu, Hoạt Hình</span>
@@ -219,5 +246,6 @@
     <script src="js/cdn.jsdelivr.net_npm_swiper@10.0.4_swiper-bundle.min.js"></script>
     <!-- Link to JS -->
     <script src="js/main.js"></script>
+    <script src="dropdown.js"></script>
 </body>
 </html>
