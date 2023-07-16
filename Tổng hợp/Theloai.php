@@ -1,13 +1,13 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Truy vấn danh sách phim bộ từ cơ sở dữ liệu
 $selectedGenre = $_GET['genre'];
 
 // Truy vấn danh sách phim bộ theo thể loại đã chọn
 $sql = "SELECT * FROM movies WHERE genre LIKE '%$selectedGenre%'";
-$result = $connection->query($sql);
+$result = $conn->query($sql);
 
 // Đầu trang HTML
 echo '<!DOCTYPE html>
@@ -145,7 +145,7 @@ echo '</div>
 </html>';
 
 // Đóng kết nối cơ sở dữ liệu
-$connection->close();
+$conn->close();
 ?>
 
 

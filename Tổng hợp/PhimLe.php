@@ -1,10 +1,10 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Truy vấn danh sách phim bộ từ cơ sở dữ liệu
 $sql = "SELECT * FROM movies WHERE genre LIKE '%Phim lẻ%'";
-$result = $connection->query($sql);
+$result = $conn->query($sql);
 
 // Đầu trang HTML
 echo '<!DOCTYPE html>
@@ -137,7 +137,7 @@ echo '</div>
 </html>';
 
 // Đóng kết nối cơ sở dữ liệu
-$connection->close();
+$conn->close();
 ?>
 
 

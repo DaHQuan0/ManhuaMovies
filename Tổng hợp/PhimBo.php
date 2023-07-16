@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Xác định số phần tử trên mỗi trang và trang hiện tại
 $itemsPerPage = 4; // Số phim bộ hiển thị trên mỗi trang
@@ -14,11 +14,11 @@ if ($offset < 0) {
 
 // Truy vấn danh sách phim bộ từ cơ sở dữ liệu với phân trang
 $sql = "SELECT * FROM movies WHERE genre LIKE '%Phim bộ%' LIMIT $itemsPerPage OFFSET $offset";
-$result = $connection->query($sql);
+$result = $conn->query($sql);
 
 // Truy vấn để đếm tổng số phim bộ
 $sqlCount = "SELECT COUNT(*) AS total FROM movies WHERE genre LIKE '%Phim bộ%'";
-$resultCount = $connection->query($sqlCount);
+$resultCount = $conn->query($sqlCount);
 $rowCount = $resultCount->fetch_assoc();
 $totalItems = $rowCount['total']; // Tổng số phim bộ
 $totalPages = ceil($totalItems / $itemsPerPage); // Tổng số trang

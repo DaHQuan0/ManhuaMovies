@@ -8,7 +8,7 @@
     //Kiểm tra xem ID có tồn tại không
     if(isset($id)){
         //Sử dụng câu lệnh prepared statement để xóa phim
-        $sql = "DELETE FROM films WHERE id = ?";
+        $sql = "DELETE FROM movies WHERE id = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);

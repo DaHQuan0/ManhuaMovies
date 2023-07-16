@@ -126,8 +126,7 @@
 
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
-
+require_once 'Config/connect.php';
 // Kiểm tra xem id phim đã được truyền vào hay chưa
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -145,7 +144,7 @@ if (isset($_GET['id'])) {
     }
 
     // Truy vấn danh sách bình luận
-    $commentsResult = $connection->query($commentsSql);
+    $commentsResult = $conn->query($commentsSql);
 
     if ($commentsResult) {
         // Lấy tổng số bình luận
@@ -223,10 +222,8 @@ if (isset($_GET['id'])) {
     } else {
         echo "Đã xảy ra lỗi khi truy vấn cơ sở dữ liệu.";
     }
-} else {
-    echo "Không có id phim được truyền vào.";
 }
 
 // Đóng kết nối cơ sở dữ liệu
-$connection->close();
+$conn->close();
 ?>

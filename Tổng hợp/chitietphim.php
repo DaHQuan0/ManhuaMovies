@@ -1,20 +1,17 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Kiểm tra xem id phim đã được truyền vào hay chưa
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
+    $title = htmlspecialchars($_POST['noidung']);
+    $dbname = "SELECT title, othertitle, release_year, genre, status, episodes, actors, director, summary, image FROM movies WHERE title = ?";
+    $stmt = mysqli_prepare($conn, $dbname);
+    mysqli_stmt_bind_param($stmt, "s", $title);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    // Truy vấn thông tin phim dựa trên id
-    $sql = "SELECT * FROM movies WHERE id = $id";
-    $result = $connection->query($sql);
-
-    // Kiểm tra xem có kết quả trả về hay không
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        // Hiển thị thông tin phim
+    if ($row = mysqli_fetch_assoc($result)) {
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -138,10 +135,10 @@ if (isset($_GET['id'])) {
                         Movie<span>Manhwa</span>
                     </a>
                     <div class="search-box">
-                        <form method="post" style="display: flex;">
+                        <form method="post" action="chitietphim.php" style="display: flex;">
                             <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
                             <button class="search-button" type="submit" name="btn">
-                                <a href="Search.html"><i class="bx bx-search"></i> </a>
+                                <i class='bx bx-search'></i>
                             </button>
                         </form>
                     </div>
@@ -214,7 +211,7 @@ if (isset($_GET['id'])) {
 
                 <div class="poster-info-container">
                     <div class="movie-poster">
-                        <a href="Xemtrailer.php?id=<?php echo $row['id']; ?>">
+                        <a>
                             <img src="<?php echo $row['image']; ?>" alt="Movie Poster">
                             <i class="play-icon bx bx-play-circle"></i>
                             <div class="play-button">Xem phim</div>
@@ -253,10 +250,4 @@ if (isset($_GET['id'])) {
     } else {
         echo "Không tìm thấy phim.";
     }
-} else {
-    echo "Không có id phim được truyền vào.";
 }
-
-// Đóng kết nối cơ sở dữ liệu
-$connection->close();
-?>

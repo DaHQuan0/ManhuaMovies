@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Kiểm tra xem id phim đã được truyền vào hay chưa
 if (isset($_GET['id'])) {
@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
             INNER JOIN trailers ON movies.id = trailers.movie_id
             LEFT JOIN episodes ON movies.id = episodes.movie_id
             WHERE movies.id = $id";
-    $result = $connection->query($sql);
+    $result = $conn->query($sql);
 
     // Kiểm tra xem có kết quả trả về hay không
     if ($result->num_rows > 0) {

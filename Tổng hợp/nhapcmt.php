@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
+require_once 'Config/connect.php';
 
 // Kiểm tra xem có dữ liệu bình luận được gửi từ form hay không
 if (isset($_POST['comment']) && isset($_POST['movie_id'])) {
@@ -13,10 +13,10 @@ if (isset($_POST['comment']) && isset($_POST['movie_id'])) {
         
         // Thực hiện truy vấn để lưu bình luận vào cơ sở dữ liệu
         $sql = "INSERT INTO comments (movie_id, comment, created_at, user_id) VALUES ('$movieId', '$comment', NOW(), '$userId')";
-        if ($connection->query($sql) === TRUE) {
+        if ($conn->query($sql) === TRUE) {
             echo "Bình luận đã được gửi thành công.";
         } else {
-            echo "Lỗi: " . $sql . "<br>" . $connection->error;
+            echo "Lỗi: " . $sql . "<br>" . $conn->error;
         }
     } else {
         // Nếu user_id chưa được truyền vào, hiển thị thông báo và nút Đăng nhập
@@ -26,5 +26,5 @@ if (isset($_POST['comment']) && isset($_POST['movie_id'])) {
 }
 
 // Đóng kết nối cơ sở dữ liệu
-$connection->close();
+$conn->close();
 ?>
