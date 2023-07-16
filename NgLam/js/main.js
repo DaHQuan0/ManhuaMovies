@@ -37,6 +37,7 @@ var swiper = new Swiper(".popular-content", {
         },
     },
 });
+
 //Show Video
 let playButton = document.querySelector('.play-movie');
 let video = document.querySelector('.video-container');
@@ -44,13 +45,13 @@ let myvideo = document.querySelector('#myvideo');
 let closebtn = document.querySelector('.close-video');
 
 playButton.onlick = () => {
-    video.classList.add(".show-video");
+    video.classList.add("show-video");
     //Auto Play When Click On Button
     myvideo.play();
 };
 
 closebtn.onlick = () => {
-    video.classList.remove("#myvideo");
+    video.classList.remove("show-video");
     //Pause On Close Video
     myvideo.pause();
-}
+};
