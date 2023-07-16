@@ -1,68 +1,74 @@
 <?php 
-    //Lấy id của phim cần sửa 
-    $id = $_GET['id']; 
-    
-    //Kết nối CSDL 
-    require_once 'Config/connect.php'; 
-    //Lấy thông tin phim cần sửa từ CSDL 
-    $sql = "SELECT * FROM movies WHERE id = $id"; 
-    $result = mysqli_query($conn, $sql); 
-    $row = mysqli_fetch_assoc($result); 
-    if(isset($_POST['sbm'])){ 
-        $title = $_POST['title']; 
-        $summary = $_POST['summary']; 
-        $genre = $_POST['genre']; 
-        
-        //Kiểm tra xem người dùng có cập nhật ảnh mới không 
-        if(!empty($_FILES['image']['name'])){ 
-            $image = $_FILES['image']['name']; 
-            move_uploaded_file($_FILES["image"]["tmp_name"], "../img/$image"); 
-            $image_path = "../img/$image"; 
-        } else { 
-            $image_path = $row['image']; 
-        } 
-            
-        //Kiểm tra xem người dùng có cập nhật video mới không 
-        if(!empty($_FILES['video_link']['name'])){ 
-            $video_link = $_FILES['video_link']['name']; 
-            move_uploaded_file($_FILES["video_link"]["tmp_name"], "../videos/$video_link"); 
-            $video_link_path = "../videos/$video_link"; 
-        } else { 
-            $video_link_path = $row['video_link']; 
-        } 
-        //Cập nhật thông tin phim vào CSDL 
-        $sql_update = "UPDATE movies SET title = '$title', summary = '$summary', image = '$image_path', video_link = '$video_link_path', genre = '$genre' WHERE id = $id"; mysqli_query($conn, $sql_update); header('location: ad_index.php?page_layout=danhsach'); 
-} ?> 
-<div class="container-fluid"> 
-    <div class="card"> 
-        <div class="card-header"> 
-            <h2>Sửa phim</h2> 
-        </div> 
-        <div class="card-body"> 
-            <form action="" method="POST" enctype="multipart/form-data"> 
-                <div class="form-group"> 
-                    <label for="">Tên phim:</label> 
-                    <input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>" required> 
-                </div> 
-                <div class="form-group"> 
-                    <label for="">Giới thiệu phim:</label> 
-                    <input type="text" name="summary" class="form-control" value="<?php echo $row['summary']; ?>" required> 
-                </div> 
-                <div class="form-group"> 
-                    <label for="">Ảnh phim:</label> 
-                    <input type="file" name="image" class="form-control"> 
-                    <img src="<?php echo $row['image']; ?>" alt="Ảnh phim" width="200"> 
-                </div> 
-                <div class="form-group"> 
-                    <label for="">Trailer phim:</label> 
-                    <input type="text" name="video_link" class="form-control" value="<?php echo $row['video_link']; ?>" required> 
-                </div> 
-                <div class="form-group"> 
-                    <label for="">Thể loại phim:</label> 
-                    <input type="text" name="genre" class="form-control" value="<?php echo $row['genre']; ?>" required> 
-                </div> 
-                <button name="sbm" class="btn btn-success" type="submit">Sửa</button> 
-            </form> 
-        </div> 
-    </div> 
-</div>
+    //Kết nối CSDL
+    require_once 'Config/connect.php';
+
+    //Kiểm tra nếu có id được truyền qua URL
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+
+        //Truy vấn CSDL để lấy thông tin phim
+        $query = mysqli_query($conn, "SELECT * FROM movies WHERE id = $id");
+
+        //Hiển thị thông tin phim trong form
+        if(mysqli_num_rows($query) > 0){
+            $row = mysqli_fetch_assoc($query);
+?>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Sửa phim</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="edit_movie_process.php">
+                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                            <div class="form-group">
+                                <label for="title">Tên phim:</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<?php echo $row['title']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="summary">Giới thiệu phim:</label>
+                                <textarea class="form-control" id="summary" name="summary"><?php echo $row['summary']; ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Ảnh bìa:</label>
+                                <input type="text" class="form-control" id="image" name="image" value="<?php echo $row['image']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="video_link">Video:</label>
+                                <input type="text" class="form-control" id="video_link" name="video_link" value="<?php echo $row['video_link']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Thể loại:</label>
+                                <input type="text" class="form-control" id="genre" name="genre" value="<?php echo $row['genre']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <input type="text" class="form-control" id="status" name="status" value="<?php echo $row['status']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="actors">Actors:</label>
+                                <input type="text" class="form-control" id="actors" name="actors" value="<?php echo $row['actors']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="director">Director:</label>
+                                <input type="text" class="form-control" id="director" name="director" value="<?php echo $row['director']; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="othertitle">Othertitle:</label>
+                                <input type="text" class="form-control" id="othertitle" name="othertitle" value="<?php echo $row['othertitle']; ?>">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+<?php 
+        } else {
+            //Hiển thị thông báo nếu không tìm thấy phim
+            echo "<p>Không tìm thấy phim</p>";
+        }
+    } else {
+        //Hiển thị thông báo nếu không có id được truyền qua URL
+        echo "<p>Không có id phim được truyền qua URL</p>";
+    }
+?>
