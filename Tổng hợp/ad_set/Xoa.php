@@ -1,23 +1,20 @@
 <?php
-    //Kết nối CSDL
-    require_once 'Config/connect.php';
+    // Kết nối CSDL
+    require_once '../Config/connect.php';
 
-    //Kiểm tra nếu có id được truyền qua URL
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
+    // Lấy id của phim cần xóa từ biến GET
+    $id = $_GET['id'];
 
-        //Truy vấn CSDL để xóa phim
-        $query = mysqli_query($conn, "DELETE FROM movies WHERE id = $id");
+    // Thực hiện truy vấn SQL để xóa phim từ CSDL
+    $sql_delete = "DELETE FROM movies WHERE id = $id";
+    $result_delete = mysqli_query($conn, $sql_delete);
 
-        if($query){
-            //Chuyển hướng về trang danh sách phim
-            header("Location: ad_index.php?page_layout=danhsachphim");
-        } else {
-            //Thông báo lỗi nếu xóa không thành công
-            echo "<p>Xóa phim không thành công</p>";
-        }
+    // Kiểm tra kết quả truy vấn SQL
+    if ($result_delete) {
+        // Chuyển hướng đến trang danh sách phim
+        header('location: ad_index.php?page_layout=danhsach');
     } else {
-        //Hiển thị thông báo nếu không có id được truyền qua URL
-        echo "<p>Không có id phim được truyền qua URL</p>";
+        // Hiển thị thông báo lỗi nếu xóa không thành công
+        echo "Lỗi: không thể xóa phim";
     }
 ?>

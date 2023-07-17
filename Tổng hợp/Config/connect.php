@@ -10,6 +10,6 @@
         die("Kết nối thất bại: " . mysqli_connect_error());
     }
     mysqli_query($conn, "SET NAMES 'utf8'");
-
+    echo "Kết nối thành công";
     
 ?>

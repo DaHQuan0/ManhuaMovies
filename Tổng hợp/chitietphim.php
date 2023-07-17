@@ -136,8 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
                     </a>
                     <div class="search-box">
                         <form method="post" action="chitietphim.php" style="display: flex;">
-                            <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
-                            <button class="search-button" type="submit" name="btn">
+                            <input type="text" name="noidung" id="search-input" placeholder="Search Movies">
+                            <button style="background-color: #2D2E37; border: none;" class="search-button" type="submit" name="btn">
                                 <i class='bx bx-search'></i>
                             </button>
                         </form>

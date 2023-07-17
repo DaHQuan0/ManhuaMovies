@@ -1,29 +1,41 @@
 <?php 
-    $sql = "SELECT episodes.id, episodes.movie_id, episodes.episode_number, episodes.video_link, trailers.title, trailers.video_link
-    FROM episodes
-    JOIN trailers ON episodes.movie_id = trailers.movie_id";
-    $query_movies = mysqli_query($conn, $sql);
     if(isset($_POST['sbm'])){
         $title = $_POST['title'];
         $summary = $_POST['summary'];
         $image = $_POST['image'];
-        $video_link = $_POST['video_link'];
-        $video_link = $_POST['video_link'];
         $genre = $_POST['genre'];
         $status = $_POST['status'];
         $actors = $_POST['actor'];
         $director = $_POST['director'];
         $othertitle = $_POST['othertitle'];
+        $movie_id = $_POST['movie_id'];
+        $episode_number = $_POST['episode_number'];
+        $video_link_episode = $_POST['video_link_episode'];
+        $video_link_trailer = $_POST['video_link_trailer'];
+        $trailer_title = $_POST['trailer_title'];
 
         //Kết nối CSDL
-        require_once 'Config/connect.php';
+        require_once '../Config/connect.php';
 
         //Chèn dữ liệu vào CSDL
-        $sql_insert = "INSERT INTO movies (title, summary, image, genre, status, actors, director, othertitle) 
-        VALUES ('$title', '$summary', '$image', '$genre', '$status', '$actors', '$director', '$othertitle')";
-        mysqli_query($conn, $sql_insert);
+        $sql_movies = "INSERT INTO movies (title, summary, image, genre, status, actors, director, othertitle) 
+            VALUES ('$title', '$summary', '$image', '$genre', '$status', '$actors', '$director', '$othertitle')";
+        $result_movies = mysqli_query($conn, $sql_movies);
+        $movie_id = mysqli_insert_id($conn); // Lấy id của bộ phim vừa được thêm vào
 
-        header('location: ad_index.php?page_layout=danhsach');  
+        if ($result_movies && $movie_id) {
+            $sql_episodes = "INSERT INTO episodes (movie_id, episode_number, video_link) 
+                VALUES ('$movie_id', '$episode_number', '$video_link_episode')";
+            mysqli_query($conn, $sql_episodes);
+
+            $sql_trailers = "INSERT INTO trailers (movie_id, title, video_link) 
+                VALUES ('$movie_id', '$trailer_title', '$video_link_trailer')";
+            mysqli_query($conn, $sql_trailers);
+
+            header('location: ad_index.php?page_layout=danhsach');  
+        } else {
+            echo "Lỗi: không thể thêm phim mới";
+        }
     }
 ?>
 
@@ -47,14 +59,6 @@
           <input type="text" name="image" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="">Trailer:</label>
-          <input type="text" name="video_link" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="">Link phim:</label>
-          <input type="text" name="video_link" class="form-control" required>
-        </div>
-        <div class="form-group">
           <label for="">Thể loại phim:</label>
           <input type="text" name="genre" class="form-control" required>
         </div>
@@ -68,6 +72,10 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="">Movie_iD:</label>
+          <input type="text" name="movie_id" class="form-control" required>
+        </div>
+        <div class="form-group">
           <label for="">Diễn viên:</label>
           <input type="text" name="actor" class="form-control" required>
         </div>
@@ -79,9 +87,25 @@
           <label for="">Tên khác:</label>
           <input type="text" name="othertitle" class="form-control" required>
         </div>
-        <div class="form-group text-center">
-          <button name="sbm" class="btn btn-success" type="submit">Thêm</button>
-          <a href="ad_index.php?page_layout=danhsach" class="btn btn-danger">Hủy bỏ</a>
+        <div class="form-group">
+          <label for="">Số tập:</label>
+          <input type="text" name="episode_number" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="">Link tập phim:</label>
+          <input type="text" name="video_link_episode" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="">Link trailer:</label>
+          <input type="text" name="video_link_trailer" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="">Tiêu đề trailer:</label>
+          <input type="text" name="trailer_title" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" name="sbm" class="btn btn-success">Thêm</button>
+          <a href="ad_index.php?page_layout=danhsach" class="btn btn-danger">Hủy</a>
         </div>
       </form>
     </div>
