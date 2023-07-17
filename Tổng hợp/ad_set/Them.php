@@ -15,7 +15,7 @@
         $trailer_title = $_POST['trailer_title'];
 
         //Kết nối CSDL
-        require_once '../Config/connect.php';
+        include '../Config/connect.php';
 
         //Chèn dữ liệu vào CSDL
         $sql_movies = "INSERT INTO movies (title, summary, image, genre, status, actors, director, othertitle) 
@@ -111,3 +111,48 @@
     </div>
   </div>
 </div>
+
+<style>
+  .card-header {
+    background-color: black;
+  }
+  .text-center {
+    color : white!important;
+    text-align: center;  
+    justify-content: center;
+    width: 100%;
+    font-weight: bold;
+  }
+  .card-body {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .form-group {
+    margin-bottom: 20px;  
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  select,
+  textarea,
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .btn-success {
+    margin-right: 10px;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: black; 
+    border: 1px red;
+  }
+  .btn {
+    text-decoration: none;
+  }
+  
+</style>

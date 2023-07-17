@@ -1,6 +1,6 @@
 <?php
     // Kết nối CSDL
-    require_once '../Config/connect.php';
+    include_once '../Config/connect.php';
 
     // Lấy id của phim cần sửa từ biến GET
     $id = $_GET['id'];

@@ -1,12 +1,12 @@
 <?php
     // Kết nối CSDL
-    require_once '../Config/connect.php';
+    include '../Config/connect.php';
 
     // Lấy id của phim cần xóa từ biến GET
     $id = $_GET['id'];
 
     // Thực hiện truy vấn SQL để xóa phim từ CSDL
-    $sql_delete = "DELETE FROM movies WHERE id = $id";
+    $sql_delete = "DELETE FROM movies WHERE movie.id = $id";
     $result_delete = mysqli_query($conn, $sql_delete);
 
     // Kiểm tra kết quả truy vấn SQL
