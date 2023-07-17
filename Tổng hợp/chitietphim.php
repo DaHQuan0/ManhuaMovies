@@ -2,7 +2,7 @@
 // Kết nối đến cơ sở dữ liệu
 require_once 'Config/connect.php';
 
-// Kiểm tra xem id phim đã được truyền vào hay chưa
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
     $title = htmlspecialchars($_POST['noidung']);
     $dbname = "SELECT title, othertitle, release_year, genre, status, episodes, actors, director, summary, image FROM movies WHERE title = ?";
