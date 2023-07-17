@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
-                   //align-items: flex-start;
+                    align-items: flex-start;
                     margin-top: 60px;
 
                 }
