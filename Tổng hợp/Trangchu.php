@@ -1,33 +1,3 @@
-<?php
-session_start();
-
-// Kiểm tra xem có tham số user_id trong URL hay không
-if (isset($_GET['user_id'])) {
-    $_SESSION['user_id'] = $_GET['user_id'];
-} else {
-    $_SESSION['user_id'] = null;
-}
-
-// Kết nối đến cơ sở dữ liệu
-include 'db_connection.php';
-
-$user = null;
-
-// Lấy thông tin người dùng từ cơ sở dữ liệu (nếu có)
-if ($_SESSION['user_id'] !== null) {
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT * FROM users WHERE id = '$user_id'";
-    $result = $connection->query($sql);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-    }
-}
-
-// Đóng kết nối cơ sở dữ liệu
-$connection->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,60 +15,7 @@ $connection->close();
     <!-- Box Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="dropdown.css">
-    <style>
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
 
-        .user-info img {
-            width: 250px;
-            height:350px;
-            object-fit: cover;
-            margin-right: 1rem;
-            margin-bottom:30px;
-        }
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 1.5rem;
-            flex-direction: row;
-        }
-
-        .page-link {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: var(--container-color);
-            color: var(--text-color);
-            border-radius: 6px;
-            margin-right: 0.5rem;
-            font-size: 0.938rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .page-link:hover {
-            background-color: red;
-        }
-
-        .active {
-            background-color: var(--main-color);
-            color: var(--text-color);
-        }
-
-        .page-input-form {
-            display: flex;
-            align-items: center;
-        }
-
-        .page-input {
-            width: 100px;
-            padding: 0.3rem;
-            font-size: 0.938rem;
-            border: 1px solid var(--container-color);
-            border-radius: 4px;
-            margin-right: 0.5rem;
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -111,7 +28,7 @@ $connection->close();
             </a>
             <!-- Search Box-->
             <div class="search-box">
-                <form method="post" action="Search.php" style="display: flex;">
+                <form method="post" action="chitietphim.php" style="display: flex;">
                     <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
                     <button style="background-color: #2D2E37; border: none;" class="search-button" type="submit" name="btn">
                         <i class='bx bx-search'></i>
@@ -119,24 +36,24 @@ $connection->close();
                 </form>
             </div>
             <!-- User -->
-            <a href="<?php echo isset($_SESSION['user_id']) ? 'UserInfo.php?user_id=' . $_SESSION['user_id'] : 'Dangnhap.php'; ?>" class="user">
-            <img src="<?php echo $user !== null ? $user['avatar_link'] : 'img/images.png'; ?>" alt="" class="user-img">
+            <a href="#" class="user">
+                <img src="img/images.png" alt="" class="user-img">
             </a>
             <!-- NavBar -->
             <div class="navbar">
-            <a href="Trangchu.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link nav-active">
+                <a href="#home" class="nav-link nav-active">
                     <i class='bx bx-home' ></i>
                     <span class="nav-link-title">Trang chủ</span>
                 </a>
-                <a href="Trangchu.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
+                <a href="#home" class="nav-link">
                     <i class='bx bxs-hot' ></i>
                     <span class="nav-link-title">Thịnh hành</span>
                 </a>
-                <a href="PhimBo.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
+                <a href="PhimBo.php" class="nav-link">
                     <i class='bx bxs-movie' ></i>
                     <span class="nav-link-title">Phim bộ</span>
                 </a>
-                <a href="PhimLe.php?user_id=<?php echo  $_SESSION['user_id']; ?>" class="nav-link">
+                <a href="PhimLe.php" class="nav-link">
                     <i class='bx bxs-film'></i>
                     <span class="nav-link-title">Phim lẻ</span>
                     <div class="dropdown-toggle-container" id="genre-dropdown-toggle">
@@ -146,7 +63,7 @@ $connection->close();
                          </a>
                          <div class="dropdown-content">
                          <div class="column">
-                         <a href="Theloai.php?genre=Hài hước&user_id=<?php echo $userId; ?>">Hài hước</a>
+                             <a href="Theloai.php?genre=Hài hước">Hài hước</a>
                              <a href="Theloai.php?genre=Hành động">Hành động</a>
                              <a href="Theloai.php?genre=Phiêu lưu">Phiêu lưu</a>
                              <a href="Theloai.php?genre=Tình cảm">Tình cảm</a>
@@ -170,7 +87,7 @@ $connection->close();
                      </div>
                 
                  
-                <a href="Yeuthich.php" class="nav-link">
+                <a href="#home" class="nav-link">
                     <i class='bx bx-heart'></i>
                     <span class="nav-link-title">Yêu thích</span>
                 </a>
