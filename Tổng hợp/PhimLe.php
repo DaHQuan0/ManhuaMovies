@@ -106,10 +106,10 @@ if (isset($_POST['go']) || isset($_POST['targetPage'])) {
                 Movie<span>Manhwa</span>
             </a>
             <div class="search-box">
-                <form method="post" style="display: flex;">
+                <form method="post" action="Search.php" style="display: flex;">
                     <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
-                    <button class="search-button" type="submit" name="btn">
-                        <a href="search.php"><i class="bx bx-search"></i> </a>
+                    <button style="background-color: #2D2E37; border: none;" class="search-button" type="submit" name="btn">
+                        <i class='bx bx-search'></i>
                     </button>
                 </form>
             </div>
