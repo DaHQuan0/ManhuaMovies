@@ -1,6 +1,14 @@
 <?php
+session_start();
 // Kết nối đến cơ sở dữ liệu
-require_once 'Config/connect.php';
+include 'db_connection.php';
+
+// Kiểm tra nếu có tham số user_id trong URL
+if (isset($_GET['user_id'])) {
+    $_SESSION['user_id'] = $_GET['user_id'];
+} else {
+    $_SESSION['user_id'] = null;
+}
 
 // Xác định số phần tử trên mỗi trang và trang hiện tại
 $itemsPerPage = 4; // Số phim bộ hiển thị trên mỗi trang
@@ -14,11 +22,11 @@ if ($offset < 0) {
 
 // Truy vấn danh sách phim bộ từ cơ sở dữ liệu với phân trang
 $sql = "SELECT * FROM movies WHERE genre LIKE '%Phim bộ%' LIMIT $itemsPerPage OFFSET $offset";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 
 // Truy vấn để đếm tổng số phim bộ
 $sqlCount = "SELECT COUNT(*) AS total FROM movies WHERE genre LIKE '%Phim bộ%'";
-$resultCount = $conn->query($sqlCount);
+$resultCount = $connection->query($sqlCount);
 $rowCount = $resultCount->fetch_assoc();
 $totalItems = $rowCount['total']; // Tổng số phim bộ
 $totalPages = ceil($totalItems / $itemsPerPage); // Tổng số trang
@@ -36,7 +44,7 @@ if (isset($_POST['go']) || isset($_POST['targetPage'])) {
 }
 
 // Đầu trang HTML
-echo '
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,7 +117,7 @@ echo '
                 <img src="img/images.png" alt="" class="user-img">
             </a>
             <div class="navbar">
-                <a href="TrangChu.html" class="nav-link">
+                <a href="Trangchu.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
                     <i class="bx bx-home nav-link-icon"></i>
                     <span class="nav-link-title">Trang chủ</span>
                 </a>
@@ -117,11 +125,11 @@ echo '
                     <i class="bx bxs-hot nav-link-icon"></i>
                     <span class="nav-link-title">Thịnh hành</span>
                 </a>
-                <a href="PhimBo.php" class="nav-link nav-active">
+                <a href="PhimBo.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link nav-active">
                     <i class="bx bxs-movie nav-link-icon"></i>
                     <span class="nav-link-title">Phim bộ</span>
                 </a>
-                <a href="PhimLe.php" class="nav-link">
+                <a href="PhimLe.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
                     <i class="bx bxs-film nav-link-icon"></i>
                     <span class="nav-link-title">Phim lẻ</span>
                 </a>
@@ -132,22 +140,22 @@ echo '
                     </a>
                     <div class="dropdown-content">
                         <div class="column">
-                            <a href="Theloai.php?genre=Hài hước">Hài hước</a>
-                            <a href="Theloai.php?genre=Hành động">Hành động</a>
-                            <a href="Theloai.php?genre=Phiêu lưu">Phiêu lưu</a>
-                            <a href="Theloai.php?genre=Tình cảm">Tình cảm</a>
-                            <a href="Theloai.php?genre=Học đường">Học đường</a>
-                            <a href="Theloai.php?genre=Võ thuật">Võ thuật</a>
-                            <a href="Theloai.php?genre=Tài liệu">Tài liệu</a>
+                            <a href="Theloai.php?genre=Hài hước&user_id=<?php echo $_SESSION['user_id']; ?>">Hài hước</a>
+                            <a href="Theloai.php?genre=Hành động&user_id=<?php echo $_SESSION['user_id']; ?>">Hành động</a>
+                            <a href="Theloai.php?genre=Phiêu lưu&user_id=<?php echo $_SESSION['user_id']; ?>">Phiêu lưu</a>
+                            <a href="Theloai.php?genre=Tình cảm&user_id=<?php echo $_SESSION['user_id']; ?>">Tình cảm</a>
+                            <a href="Theloai.php?genre=Học đường&user_id=<?php echo $_SESSION['user_id']; ?>">Học đường</a>
+                            <a href="Theloai.php?genre=Võ thuật&user_id=<?php echo $_SESSION['user_id']; ?>">Võ thuật</a>
+                            <a href="Theloai.php?genre=Tài liệu&user_id=<?php echo $_SESSION['user_id']; ?>">Tài liệu</a>
                         </div>
                         <div class="column">
-                            <a href="Theloai.php?genre=Viễn tưởng">Viễn tưởng</a>
-                            <a href="Theloai.php?genre=Hoạt hình">Hoạt hình</a>
-                            <a href="Theloai.php?genre=Thể thao">Thể thao</a>
-                            <a href="Theloai.php?genre=Âm nhạc">Âm nhạc</a>
-                            <a href="Theloai.php?genre=Gia đình">Gia đình</a>
-                            <a href="Theloai.php?genre=Kinh dị">Kinh dị</a>
-                            <a href="Theloai.php?genre=Tâm lý">Tâm lý</a>
+                            <a href="Theloai.php?genre=Viễn tưởng&user_id=<?php echo $_SESSION['user_id']; ?>">Viễn tưởng</a>
+                            <a href="Theloai.php?genre=Hoạt hình&user_id=<?php echo $_SESSION['user_id']; ?>">Hoạt hình</a>
+                            <a href="Theloai.php?genre=Thể thao&user_id=<?php echo $_SESSION['user_id']; ?>">Thể thao</a>
+                            <a href="Theloai.php?genre=Âm nhạc&user_id=<?php echo $_SESSION['user_id']; ?>">Âm nhạc</a>
+                            <a href="Theloai.php?genre=Gia đình&user_id=<?php echo $_SESSION['user_id']; ?>">Gia đình</a>
+                            <a href="Theloai.php?genre=Kinh dị&user_id=<?php echo $_SESSION['user_id']; ?>">Kinh dị</a>
+                            <a href="Theloai.php?genre=Tâm lý&user_id=<?php echo $_SESSION['user_id']; ?>">Tâm lý</a>
                         </div>
                     </div>
                 </div>
@@ -161,61 +169,57 @@ echo '
     
     <section class="popular container" id="popular" style="margin-top: 80px;">
         <div class="heading">
-            <h2 class="heading-title">';
-    
-if (isset($_GET['genre'])) {
-    $genre = $_GET['genre'];
-    echo 'Danh sách phim thể loại ' . $genre . ' - Trang ' . $page;
-} else {
-    echo 'Danh sách phim bộ - Trang ' . $page;
-}
-
-echo '</h2>
+            <h2 class="heading-title">
+                <?php
+                if (isset($_GET['genre'])) {
+                    $genre = $_GET['genre'];
+                    echo 'Danh sách phim thể loại ' . $genre . ' - Trang ' . $page;
+                } else {
+                    echo 'Danh sách phim bộ - Trang ' . $page;
+                }
+                ?>
+            </h2>
         </div>
         <div class="popular-content">
-            <div class="movie-grid">';
-        
-// Hiển thị danh sách phim bộ
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo '
-        <div class="movie-box">
-            <img src="' . $row['image'] . '" alt="" class="movie-box-img">
-            <div class="box-text">
-                <h2 class="movie-title">' . $row['title'] . '</h2>
-                <span class="movie-type">' . $row['genre'] . '</span>
-                <a href="chitietphim.php?id=' . $row['id'] . '" class="watch-btn play-btn">
-                    <i class="bx bx-right-arrow"></i>
-                </a>
-            </div>
-        </div>';
-    }
-} else {
-    echo "Không có phim bộ trong cơ sở dữ liệu.";
-}
-
-// Hiển thị khung phân trang
-echo '
+            <div class="movie-grid">
+                <?php
+                // Hiển thị danh sách phim bộ
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '
+                        <div class="movie-box">
+                            <img src="' . $row['image'] . '" alt="" class="movie-box-img">
+                            <div class="box-text">
+                                <h2 class="movie-title">' . $row['title'] . '</h2>
+                                <span class="movie-type">' . $row['genre'] . '</span>
+                                <a href="chitietphim.php?id=' . $row['id'] . '&user_id=' . $_SESSION['user_id'] . '" class="watch-btn play-btn">
+                                    <i class="bx bx-right-arrow"></i>
+                                </a>
+                            </div>
+                        </div>';
+                    }
+                } else {
+                    echo "Không có phim bộ trong cơ sở dữ liệu.";
+                }
+                ?>
             </div>
         </div>
-        <div class="pagination">';
-
-// Kiểm tra trang hiện tại
-if ($page > 1) {
-    echo '<a href="PhimBo.php?page=' . ($page - 1) . '" class="page-link">Trang trước</a>';
-}
-
-echo '
+        <div class="pagination">
+            <?php
+            // Kiểm tra trang hiện tại
+            if ($page > 1) {
+                echo '<a href="PhimBo.php?page=' . ($page - 1) . '" class="page-link">Trang trước</a>';
+            }
+            ?>
             <form method="get" class="page-input-form" id="page-form" action="PhimBo.php">
-                <input type="number" name="page" min="1" max="' . $totalPages . '" class="page-input" placeholder="Số trang" id="target-page">
-            </form>';
-
-// Kiểm tra trang tiếp theo
-if ($page < $totalPages) {
-    echo '<a href="PhimBo.php?page=' . ($page + 1) . '" class="page-link">Trang sau</a>';
-}
-
-echo '
+                <input type="number" name="page" min="1" max="<?php echo $totalPages; ?>" class="page-input" placeholder="Số trang" id="target-page">
+            </form>
+            <?php
+            // Kiểm tra trang tiếp theo
+            if ($page < $totalPages) {
+                echo '<a href="PhimBo.php?page=' . ($page + 1) . '" class="page-link">Trang sau</a>';
+            }
+            ?>
         </div>
     </section>
 
@@ -231,7 +235,7 @@ echo '
                     event.preventDefault(); // Ngăn chặn hành vi mặc định của phím Enter (gửi biểu mẫu)
 
                     var targetPage = parseInt(input.value);
-                    if (targetPage >= 1 && targetPage <= ' . $totalPages . ') {
+                    if (targetPage >= 1 && targetPage <= <?php echo $totalPages; ?>) {
                         document.getElementById("page-form").submit(); // Gửi biểu mẫu để chuyển đến trang tương ứng
                     }
                 }
@@ -240,8 +244,8 @@ echo '
     </script>
 
 </body>
-</html>';
-
+</html>
+<?php
 // Đóng kết nối cơ sở dữ liệu
 $connection->close();
 ?>

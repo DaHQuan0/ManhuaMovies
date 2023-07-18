@@ -1,17 +1,78 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-require_once 'Config/connect.php';
+include 'db_connection.php';
+
+// Kết nối đến cơ sở dữ liệu
+
+// Kiểm tra xem user_id đã tồn tại trong $_SESSION hay chưa
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = null;
+}
+
+// Kiểm tra xem id phim đã được truyền vào hay chưa
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    // Truy vấn thông tin phim dựa trên id
+    $sql = "SELECT * FROM movies WHERE id = $id";
+    $result = $connection->query($sql);
+
+    // Kiểm tra xem có kết quả trả về hay không
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Kiểm tra yêu cầu thêm vào danh sách yêu thích
+        if (isset($_POST['add_to_favorites'])) {
+            // Kiểm tra xem user đã đăng nhập hay chưa
+            if ($user_id !== null) {
+                // Kiểm tra xem bộ phim đã có trong danh sách yêu thích của user chưa
+                $checkSql = "SELECT * FROM favorites WHERE user_id = '$user_id' AND movie_id = '$id'";
+                $checkResult = $connection->query($checkSql);
+
+                if ($checkResult->num_rows > 0) {
+                    echo "Bộ phim đã có trong danh sách yêu thích của bạn.";
+                } else {
+                    // Thêm bộ phim vào danh sách yêu thích
+                    $insertSql = "INSERT INTO favorites (user_id, movie_id) VALUES ('$user_id', '$id')";
+                    $insertResult = $connection->query($insertSql);
+
+                    if ($insertResult === true) {
+                        echo "Bộ phim đã được thêm vào danh sách yêu thích của bạn.";
+                    } else {
+                        echo "Đã xảy ra lỗi. Vui lòng thử lại sau.";
+                    }
+                }
+            } else {
+                echo "Bạn phải đăng nhập để thực hiện thao tác này.";
+            }
+        }
+    }
+}
+
+// Kiểm tra xem user_id đã tồn tại trong $_SESSION hay chưa
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = null;
+}
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
-    $title = htmlspecialchars($_POST['noidung']);
-    $dbname = "SELECT title, othertitle, release_year, genre, status, episodes, actors, director, summary, image FROM movies WHERE title = ?";
-    $stmt = mysqli_prepare($conn, $dbname);
-    mysqli_stmt_bind_param($stmt, "s", $title);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
 
-    if ($row = mysqli_fetch_assoc($result)) {
+// Kiểm tra xem id phim đã được truyền vào hay chưa
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    // Truy vấn thông tin phim dựa trên id
+    $sql = "SELECT * FROM movies WHERE id = $id";
+    $result = $connection->query($sql);
+
+    // Kiểm tra xem có kết quả trả về hay không
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Hiển thị thông tin phim
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -26,11 +87,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
             <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
             <link rel="stylesheet" type="text/css" href="dropdown.css">
             <style>
+
+.add-to-favorites {
+            background-color: #E91A46;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .add-to-favorites:hover {
+            background-color: #c60738;
+        }
+
                 .movie-details.container {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
-                    align-items: flex-start;
+                   //align-items: flex-start;
                     margin-top: 60px;
 
                 }
@@ -131,14 +208,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
             <header>
                 <div class="nav container">
 
-                    <a href="TrangChu.html" class="logo">
+                    <a href="TrangChu.php" class="logo">
                         Movie<span>Manhwa</span>
                     </a>
                     <div class="search-box">
-                        <form method="post" action="chitietphim.php" style="display: flex;">
-                            <input type="text" name="noidung" id="search-input" placeholder="Search Movies">
-                            <button style="background-color: #2D2E37; border: none;" class="search-button" type="submit" name="btn">
-                                <i class='bx bx-search'></i>
+                        <form method="post" style="display: flex;">
+                            <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
+                            <button class="search-button" type="submit" name="btn">
+                                <a href="Search.html"><i class="bx bx-search"></i> </a>
                             </button>
                         </form>
                     </div>
@@ -207,11 +284,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
                     </div>
                 </div>
             </header>
+            
+
+
             <section class="movie-details container">
 
                 <div class="poster-info-container">
                     <div class="movie-poster">
-                        <a>
+                        <a href="Xemtrailer.php?id=<?php echo $row['id']; ?>">
                             <img src="<?php echo $row['image']; ?>" alt="Movie Poster">
                             <i class="play-icon bx bx-play-circle"></i>
                             <div class="play-button">Xem phim</div>
@@ -226,6 +306,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
                         <p><strong>Số tập:</strong> <?php echo $row['episodes']; ?></p>
                         <p><strong>Diễn viên:</strong> <?php echo $row['actors']; ?></p>
                         <p><strong>Đạo diễn:</strong> <?php echo $row['director']; ?></p>
+                        <form method="POST" action="">
+                    <button type="submit" name="add_to_favorites" class="add-to-favorites">Thêm vào danh sách yêu thích</button>
+                </form>
                     </div>
                 </div>
                 <div class="movie-description">
@@ -250,4 +333,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['noidung'])) {
     } else {
         echo "Không tìm thấy phim.";
     }
+} else {
+    echo "Không có id phim được truyền vào.";
 }
+
+// Đóng kết nối cơ sở dữ liệu
+$connection->close();
+?>

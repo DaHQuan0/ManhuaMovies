@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-require_once 'Config/connect.php';
+include 'db_connection.php';
 
 // Kiểm tra xem id phim đã được truyền vào hay chưa
 if (isset($_GET['id'])) {
@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
             INNER JOIN trailers ON movies.id = trailers.movie_id
             LEFT JOIN episodes ON movies.id = episodes.movie_id
             WHERE movies.id = $id";
-    $result = $conn->query($sql);
+    $result = $connection->query($sql);
 
     // Kiểm tra xem có kết quả trả về hay không
     if ($result->num_rows > 0) {
@@ -132,7 +132,7 @@ if (isset($_GET['id'])) {
                         <img src="img/images.png" alt="" class="user-img">
                     </a>
                     <div class="navbar">
-                        <a href="TrangChu.html" class="nav-link">
+                        <a href="TrangChu.php" class="nav-link">
                             <i class="bx bx-home"></i>
                             <span class="nav-link-title">Trang chủ</span>
                         </a>
@@ -223,6 +223,7 @@ if (isset($_GET['id'])) {
 } else {
     echo "Không có id phim được truyền vào.";
 }
+
 
 // Đóng kết nối cơ sở dữ liệu
 $connection->close();

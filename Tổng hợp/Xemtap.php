@@ -1,6 +1,6 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
-require_once 'Config/connect.php';
+include 'db_connection.php';
 
 // Kiểm tra xem id phim và số tập đã được truyền vào hay chưa
 if (isset($_GET['id']) && isset($_GET['episode'])) {
@@ -9,7 +9,7 @@ if (isset($_GET['id']) && isset($_GET['episode'])) {
 
     // Truy vấn thông tin phim dựa trên id phim
     $sql_movie = "SELECT title FROM movies WHERE id = $id";
-    $result_movie = $conn->query($sql_movie);
+    $result_movie = $connection->query($sql_movie);
 
     // Kiểm tra xem có kết quả trả về hay không
     if ($result_movie->num_rows > 0) {
@@ -18,7 +18,7 @@ if (isset($_GET['id']) && isset($_GET['episode'])) {
 
         // Truy vấn danh sách tập phim dựa trên id phim
         $sql_episodes = "SELECT episode_number, video_link FROM episodes WHERE movie_id = $id";
-        $result_episodes = $conn->query($sql_episodes);
+        $result_episodes = $connection->query($sql_episodes);
 
         // Kiểm tra xem có kết quả trả về hay không
         if ($result_episodes->num_rows > 0) {
