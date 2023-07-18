@@ -72,7 +72,7 @@ $connection->close();
             </a>
             <!-- Search Box-->
             <div class="search-box">
-                <form method="post" style="display: flex;">
+                <form method="post" action="chitietphim.php" style="display: flex;">
                     <input type="text" name="noidung" autocomplete="off" id="search-input" placeholder="Search Movies">
                     <button class="search-button" type="submit" name="btn">
                         <a href="Search.html"><i class='bx bx-search'></i> </a>
