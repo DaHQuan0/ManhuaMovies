@@ -10,6 +10,17 @@ if (isset($_GET['user_id'])) {
     $_SESSION['user_id'] = null;
 }
 
+if ($_SESSION['user_id'] !== null) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT * FROM users WHERE id = '$user_id'";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+    }
+}
+
+
 // Xác định số phần tử trên mỗi trang và trang hiện tại
 $itemsPerPage = 4; // Số phim bộ hiển thị trên mỗi trang
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Trang hiện tại, mặc định là trang đầu tiên
@@ -57,6 +68,18 @@ if (isset($_POST['go']) || isset($_POST['targetPage'])) {
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dropdown.css">
     <style>
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 250px;
+            height:350px;
+            object-fit: cover;
+            margin-right: 1rem;
+            margin-bottom:30px;
+        }
         .pagination {
             display: flex;
             justify-content: center;
@@ -113,8 +136,8 @@ if (isset($_POST['go']) || isset($_POST['targetPage'])) {
                     </button>
                 </form>
             </div>
-            <a href="#" class="user">
-                <img src="img/images.png" alt="" class="user-img">
+            <a href="<?php echo isset($_SESSION['user_id']) ? 'UserInfo.php?user_id=' . $_SESSION['user_id'] : 'Dangnhap.php'; ?>" class="user">
+                <img src="<?php echo $user !== null ? $user['avatar_link'] : 'img/images.png'; ?>" alt="" class="user-img">
             </a>
             <div class="navbar">
                 <a href="Trangchu.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">

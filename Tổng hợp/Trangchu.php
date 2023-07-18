@@ -58,7 +58,46 @@ $connection->close();
             margin-right: 1rem;
             margin-bottom:30px;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-direction: row;
+        }
 
+        .page-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--container-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            margin-right: 0.5rem;
+            font-size: 0.938rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-link:hover {
+            background-color: red;
+        }
+
+        .active {
+            background-color: var(--main-color);
+            color: var(--text-color);
+        }
+
+        .page-input-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .page-input {
+            width: 100px;
+            padding: 0.3rem;
+            font-size: 0.938rem;
+            border: 1px solid var(--container-color);
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
     </style>
 </head>
 <body>

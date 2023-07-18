@@ -2,6 +2,22 @@
 session_start();
 include 'db_connection.php';
 
+if (isset($_GET['user_id'])) {
+    $_SESSION['user_id'] = $_GET['user_id'];
+} else {
+    $_SESSION['user_id'] = null;
+}
+
+if ($_SESSION['user_id'] !== null) {
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT * FROM users WHERE id = '$user_id'";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+    }
+}
+
 // Kiểm tra xem đã nhập từ khóa tìm kiếm hay chưa
 if (isset($_POST['noidung'])) {
     $keyword = $_POST['noidung'];
@@ -92,7 +108,7 @@ if (isset($_POST['noidung'])) {
             </div>
             <!-- User -->
             <a href="<?php echo isset($_SESSION['user_id']) ? 'UserInfo.php?user_id=' . $_SESSION['user_id'] : 'Dangnhap.php'; ?>" class="user">
-            <img src="<?php echo $user !== null ? $user['avatar_link'] : 'img/images.png'; ?>" alt="" class="user-img">
+                <img src="<?php echo $user !== null ? $user['avatar_link'] : 'img/images.png'; ?>" alt="" class="user-img">
             </a>
             <!-- NavBar -->
             <div class="navbar">
