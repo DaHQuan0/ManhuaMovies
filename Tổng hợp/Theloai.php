@@ -1,25 +1,26 @@
 <?php
-session_start();
 // Kết nối đến cơ sở dữ liệu
 include 'db_connection.php';
+session_start();
+// Xác định số phần tử trên mỗi trang và trang hiện tại
+$itemsPerPage = 4; // Số phim thể loại hiển thị trên mỗi trang
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Trang hiện tại, mặc định là trang đầu tiên
 
-// Kiểm tra nếu có tham số user_id trong URL
+// Xác định thể loại phim từ biến đầu vào
+$genre = isset($_GET['genre']) ? $_GET['genre'] : '';
+
+// Xác định user_id từ biến đầu vào
 if (isset($_GET['user_id'])) {
     $_SESSION['user_id'] = $_GET['user_id'];
 } else {
     $_SESSION['user_id'] = null;
 }
 
-// Xác định số phần tử trên mỗi trang và trang hiện tại
-$itemsPerPage = 4; // Số phim bộ hiển thị trên mỗi trang
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1; // Trang hiện tại, mặc định là trang đầu tiên
-
 // Tính toán số phần tử bỏ qua
 $offset = ($page - 1) * $itemsPerPage;
 if ($offset < 0) {
     $offset = 0;
 }
-
 
 if ($_SESSION['user_id'] !== null) {
     $user_id = $_SESSION['user_id'];
@@ -31,15 +32,16 @@ if ($_SESSION['user_id'] !== null) {
     }
 }
 
-// Truy vấn danh sách phim bộ từ cơ sở dữ liệu với phân trang
-$sql = "SELECT * FROM movies WHERE genre LIKE '%Phim bộ%' LIMIT $itemsPerPage OFFSET $offset";
+
+// Truy vấn danh sách phim theo thể loại từ cơ sở dữ liệu với phân trang
+$sql = "SELECT * FROM movies WHERE genre LIKE '%$genre%' LIMIT $itemsPerPage OFFSET $offset";
 $result = $connection->query($sql);
 
-// Truy vấn để đếm tổng số phim bộ
-$sqlCount = "SELECT COUNT(*) AS total FROM movies WHERE genre LIKE '%Phim bộ%'";
+// Truy vấn để đếm tổng số phim theo thể loại
+$sqlCount = "SELECT COUNT(*) AS total FROM movies WHERE genre LIKE '%$genre%'";
 $resultCount = $connection->query($sqlCount);
 $rowCount = $resultCount->fetch_assoc();
-$totalItems = $rowCount['total']; // Tổng số phim bộ
+$totalItems = $rowCount['total']; // Tổng số phim theo thể loại
 $totalPages = ceil($totalItems / $itemsPerPage); // Tổng số trang
 
 // Xử lý khi người dùng nhấp vào nút Đến trang hoặc bấm Enter
@@ -49,7 +51,7 @@ if (isset($_POST['go']) || isset($_POST['targetPage'])) {
     if ($targetPage >= 1 && $targetPage <= $totalPages) {
         $page = $targetPage;
         $offset = ($page - 1) * $itemsPerPage;
-        $sql = "SELECT * FROM movies WHERE genre LIKE '%Phim bộ%' LIMIT $itemsPerPage OFFSET $offset";
+        $sql = "SELECT * FROM movies WHERE genre LIKE '%$genre%' LIMIT $itemsPerPage OFFSET $offset";
         $result = $connection->query($sql);
     }
 }
