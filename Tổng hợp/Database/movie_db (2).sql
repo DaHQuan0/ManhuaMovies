@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Jul 16, 2023 at 04:20 PM
+-- Generation Time: Jul 18, 2023 at 04:02 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,40 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `movie_id`, `comment`, `created_at`, `user_id`) VALUES
 (1, 29, 'hahaha', '2023-07-16 10:29:29', 1),
-(4, 29, 'truyện chán vãi', '2023-07-16 14:05:14', 2);
+(4, 29, 'truyện chán vãi', '2023-07-16 14:05:14', 2),
+(5, 29, '1', '2023-07-17 04:52:29', 1),
+(6, 29, 'lmao', '2023-07-17 04:52:50', 1),
+(7, 29, 'lmao', '2023-07-17 04:52:52', 1),
+(8, 29, 'lmao', '2023-07-17 04:55:52', 1),
+(9, 29, 'lmao', '2023-07-17 04:55:54', 1),
+(20, 29, 'e', '2023-07-17 05:13:16', 1),
+(23, 29, 'e', '2023-07-17 05:14:40', 1),
+(32, 29, 'e', '2023-07-17 05:22:18', 2),
+(33, 29, 'e', '2023-07-17 08:53:15', 1),
+(34, 29, '', '2023-07-17 22:16:09', 1),
+(35, 29, '2', '2023-07-17 22:22:27', 1),
+(36, 29, '1', '2023-07-17 22:22:31', 1),
+(37, 29, '2', '2023-07-17 22:22:35', 1),
+(38, 29, '2', '2023-07-17 22:22:40', 1),
+(39, 30, '1', '2023-07-17 22:23:07', 2),
+(40, 30, '1', '2023-07-17 22:23:11', 2),
+(41, 30, '3', '2023-07-17 22:23:24', 2),
+(42, 30, '3', '2023-07-17 22:23:28', 2),
+(43, 30, '1', '2023-07-17 22:23:31', 2),
+(44, 30, '1', '2023-07-17 22:23:34', 2),
+(45, 30, '1', '2023-07-17 22:28:00', 2),
+(46, 30, '1', '2023-07-17 22:28:03', 2),
+(47, 30, 'haizz', '2023-07-17 22:28:12', 2),
+(48, 30, 'haizz', '2023-07-17 22:28:19', 2),
+(49, 30, 'haizz', '2023-07-17 22:28:24', 2),
+(50, 30, 'haizz', '2023-07-17 22:28:30', 2),
+(51, 30, 'o', '2023-07-17 22:29:32', 2),
+(52, 31, '1', '2023-07-17 22:32:40', 2),
+(53, 30, 'e', '2023-07-17 23:56:47', 2),
+(54, 30, 'ngày xửa', '2023-07-17 23:56:57', 2),
+(55, 29, 'Lmao, phim ảo v', '2023-07-18 00:01:19', 10),
+(56, 32, 'phim như cc', '2023-07-18 00:03:02', 11),
+(57, 29, 'nào', '2023-07-18 13:37:54', 15);
 
 -- --------------------------------------------------------
 
@@ -79,6 +112,16 @@ CREATE TABLE `favorites` (
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `favorites`
+--
+
+INSERT INTO `favorites` (`id`, `user_id`, `movie_id`) VALUES
+(1, 14, 29),
+(2, 14, 30),
+(4, 14, 31),
+(5, 14, 32);
+
 -- --------------------------------------------------------
 
 --
@@ -113,7 +156,7 @@ INSERT INTO `movies` (`id`, `title`, `image`, `release_year`, `country`, `genre`
 (34, 'HÀNH TINH KHỈ', 'https://m.media-amazon.com/images/I/71FecJZU8mL._AC_UF1000,1000_QL80_.jpg', 2020, 'Mĩ', ' Hành Động, Viễn Tưởng, Phiêu Lưu, Chính kịch, Phim bộ', 'Full', 1, ' Charlton Heston, Roddy McDowall, Kim Hunter, Maurice Evans, James Whitmore', 'Franklin J. Schaffner', 'Bối cảnh của phim Hành Tinh Khỉ 1 được lấy vào tương lai rất xa, bốn phi hành gia tỉnh dậy sau giấc ngủ đông (bằng kỹ thuật điện tử) trong chuyến hành trình với vận tốc gần bằng vận tốc ánh sáng của mình và phát hiện họ đã đặt chân đến một hành tinh lạ và đã là năm 3978. Tại hành tinh này họ phát hiện ra các loài linh trưởng, có trí tuệ cao, biết nói là những kẻ thống trị, còn loài người, không có khả năng giao tiếp bằng tiếng nói, lại bị coi là \"động vật\" có thể bị săn bắn, bắt làm nô lệ, hay thậm chí là để nghiên cứu...', 'Planet of the Apes'),
 (35, 'ĐÁM CƯỚI KIỂU MỸ', 'https://m.media-amazon.com/images/M/MV5BMTAwNTIzNDk1MDVeQTJeQWpwZ15BbWU3MDMwNzAwMDE@._V1_FMjpg_UX1000_.jpg', NULL, 'Mĩ', 'Tình Cảm, Hài Hước, Phim bộ', 'Full', NULL, 'Jason Biggs, Alyson Hannigan, Seann William Scott, Eddie Kaye Thomas, Thomas Ian Nicholas', 'Jesse Dylan', 'American Wedding kể về đám cưới của Jim và Michelle, kết quả đáng mong ước từ mối tình trong 2 phần trước đó của họ. Kể từ lời cầu hôn không giống ai, hàng tá chuyện rắc rối không ngừng xảy đến với cặp đôi như bữa tiệc độc thân bất thành, sự xuất hiện của những ông bạn gay hay tệ hơn là toàn bộ hoa cưới bỗng héo rũ ngay trước lễ cưới… Với sự trợ giúp của những ông bạn “phá hoại”, ngày vui của Jim và Michelle sẽ diễn ra như thế nào? Mặc dù xoay quanh cặp đôi Jim và Michelle nhưng phần 3 của loạt phim American Pie này là lần đầu tiên câu chuyện tập trung vào nhân vật Steve Stifler và những trò hề tinh quái của anh. Với kịch bản hài hước, diễn xuất tự nhiên cùng những cảnh quay đẹp mắt, bộ phim đã ẵm hai giải thưởng tại MTV Movie Awards và Teen Choice Awards vào năm 2004.', 'American Wedding'),
 (36, 'ffffffffff', '', NULL, '', 'Phim bộ', '', 1, '', '', '', ''),
-(37, 'ROBOT ĐẠI CHIẾN: QUÁI THÚ TRỖI DẬY', 'https://m.media-amazon.com/images/M/MV5BZTNiNDA4NmMtNTExNi00YmViLWJkMDAtMDAxNmRjY2I2NDVjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg', 2023, 'Mĩ', 'Hành Động, Viễn Tưởng, Phiêu Lưu, Khoa Học, Phim bộ', 'Full', 1, 'Anthony Ramos, Dominique Fishback, Luna Lauren Velez, Dean Scott Vazquez, Tobe Nwigwe, Peter Cullen, Ron Perlman, Peter Dinklage, Pete Davidson, Michelle Yeoh', 'Steven Caple Jr.', 'Một cuộc phiêu lưu vòng quanh thế giới thập niên 90 giới thiệu Maximals, Predacons và Terrorcons trong trận chiến hiện có trên trái đất giữa Autobots và Decepticons.', 'Transformers: Rise of the Beasts');
+(37, 'ROBOT ĐẠI CHIẾN: QUÁI THÚ TRỖI DẬY', 'https://m.media-amazon.com/images/M/MV5BZTNiNDA4NmMtNTExNi00YmViLWJkMDAtMDAxNmRjY2I2NDVjXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg', 2023, 'Mĩ', 'Hành Động, Viễn Tưởng, Phiêu Lưu, Khoa Học, Phim lẻ', 'Full', 1, 'Anthony Ramos, Dominique Fishback, Luna Lauren Velez, Dean Scott Vazquez, Tobe Nwigwe, Peter Cullen, Ron Perlman, Peter Dinklage, Pete Davidson, Michelle Yeoh', 'Steven Caple Jr.', 'Một cuộc phiêu lưu vòng quanh thế giới thập niên 90 giới thiệu Maximals, Predacons và Terrorcons trong trận chiến hiện có trên trái đất giữa Autobots và Decepticons.', 'Transformers: Rise of the Beasts');
 
 -- --------------------------------------------------------
 
@@ -156,7 +199,20 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `avatar_link`) VALUES
 (1, 'huy', '12345', 'huy@gmail.com', 'https://phunugioi.com/wp-content/uploads/2020/01/anh-avatar-supreme-dep-lam-dai-dien-facebook.jpg'),
-(2, 'hoangngo31', '12345', 'lmao@gmail.com', 'https://haycafe.vn/wp-content/uploads/2021/11/Anh-avatar-dep-chat-lam-hinh-dai-dien-600x600.jpg');
+(2, 'huy123', '12345', '', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUSERgREhIRERERERIRDxESEhIRERIRGBgZGRgUGBgcIS4nHB4rIRgYJjsmKy8xNTU1GiQ7QDs2Py40NT8BDAwMEA8QHhISHjQnISQ0NDQ0NDU0NDQxNDY2NDQ0NDY0ND00NDY0MTExNDQ0NDQ0NDQ0NDQ2NDQ0NDQ0NDQ0Pf/AABEIAOEA4QMBIgACEQEDEQH/'),
+(3, 'hoangngo22', '12345', '', NULL),
+(4, 'wibugod3113', '12345', '', NULL),
+(5, 'wibugod', '12345', '', NULL),
+(6, 'lalalala', '12345', '', NULL),
+(7, 'hoangngo3111111', '12345', '', NULL),
+(8, 'hoangngo311111', '12345', '', NULL),
+(9, 'hoangngo31111', '12345', '', NULL),
+(10, 'MHuy3113', 'MHuy3112003', 'huyngo3113@gmail.com', 'https://images2.thanhnien.vn/Uploaded/datdt/2022_01_04/a5ee06311886d2d88b97-981.jpg'),
+(11, 'MHoang2311', '123456789', '', NULL),
+(12, 'hoangngo3122', '12345', '', NULL),
+(13, 'MHuy3113', '12345', 'synchrozation1@gmail.com', 'https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien.jpeg'),
+(14, 'bullkid2311', '12345', 'huyngo3113@gmail.com', 'https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien.jpeg'),
+(15, 'rip123', '12345', 'lmao123@gmail.com', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgVFhYZGRgaHBocHBwaGhwaHBocGhwaGhwhHBwcIS4lHB4rHxwaKDgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHhISHjQhJCsxNDQ0NDQ0NDQ0NDE0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0MTQ0NP/AABEIALcBEwMBIgACEQEDEQH/');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +267,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `episodes`
@@ -223,7 +279,7 @@ ALTER TABLE `episodes`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `movies`
@@ -241,7 +297,7 @@ ALTER TABLE `trailers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
