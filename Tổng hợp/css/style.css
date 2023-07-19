@@ -227,7 +227,7 @@ header{
     background: linear-gradient(
         8deg, 
         hsl(240 17% 14% / 74%) 14%,
-        hsl(240 17% 14% / 74%) 44%
+        hsl(240 17% 14% / 14%) 44%
     );
     overflow: hidden;
 }

@@ -300,8 +300,8 @@ if (isset($_GET['id'])) {
                         <p><strong>Đạo diễn:</strong> <?php echo $row['director']; ?></p>
 
                         <form method="POST" action="AddFavorite.php?id=<?php echo $row['id']; ?>&user_id=<?php echo $_SESSION['user_id']; ?>">
-    <button type="submit" name="add_to_favorites" class="add-to-favorites">Thêm vào danh sách yêu thích</button>
-</form>
+                        <button type="submit" name="add_to_favorites" class="add-to-favorites">Thêm vào danh sách yêu thích</button>
+                        </form>
 
                     </div>
                 </div>

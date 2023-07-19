@@ -243,7 +243,7 @@ $connection->close();
                 <!-- Movies Box 4 -->
                 <div class="swiper-slide">
                     <div class="movie-box">
-                        <img src="img/Bách Luyện Thành Thần.jpg" alt="" class="movie-box-img">
+                        <img src="img/bach_luyen_thanh_than.jpg" alt="" class="movie-box-img">
                         <div class="box-text">
                             <h2 class="movie-title">Bách luyện thành thần</h2>
                         <span class="movie-type">Hành Động, Phiêu Lưu, Hoạt Hình</span>
