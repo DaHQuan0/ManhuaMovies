@@ -155,58 +155,63 @@ if (isset($_GET['id']) && isset($_GET['episode'])) {
                                 </button>
                             </form>
                         </div>
-                        <a href="<?php echo isset($_SESSION['user_id']) ? 'UserInfo.php?user_id=' . $_SESSION['user_id'] : 'Dangnhap.php'; ?>" class="user">
-                            <img src="<?php echo $user !== null ? $user['avatar_link'] : 'img/images.png'; ?>" alt="" class="user-img">
+                        <a href="#" class="user">
+                            <img src="img/images.png" alt="" class="user-img">
                         </a>
-            <div class="navbar">
-                <a href="Trangchu.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
-                    <i class="bx bx-home nav-link-icon"></i>
-                    <span class="nav-link-title">Trang chủ</span>
-                </a>
-                <a href="#home" class="nav-link">
-                    <i class="bx bxs-hot nav-link-icon"></i>
-                    <span class="nav-link-title">Thịnh hành</span>
-                </a>
-                <a href="PhimBo.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link nav-active">
-                    <i class="bx bxs-movie nav-link-icon"></i>
-                    <span class="nav-link-title">Phim bộ</span>
-                </a>
-                <a href="PhimLe.php?user_id=<?php echo $_SESSION['user_id']; ?>" class="nav-link">
-                    <i class="bx bxs-film nav-link-icon"></i>
-                    <span class="nav-link-title">Phim lẻ</span>
-                </a>
-                <div class="dropdown-toggle-container" id="genre-dropdown-toggle">
-                    <a href="#" class="nav-link dropdown">
-                        <i class="bx bx-category nav-link-icon"></i>
-                        <span class="nav-link-title">Thể loại</span>
-                    </a>
-                    <div class="dropdown-content">
-                        <div class="column">
-                            <a href="Theloai.php?genre=Hài hước&user_id=<?php echo $_SESSION['user_id']; ?>">Hài hước</a>
-                            <a href="Theloai.php?genre=Hành động&user_id=<?php echo $_SESSION['user_id']; ?>">Hành động</a>
-                            <a href="Theloai.php?genre=Phiêu lưu&user_id=<?php echo $_SESSION['user_id']; ?>">Phiêu lưu</a>
-                            <a href="Theloai.php?genre=Tình cảm&user_id=<?php echo $_SESSION['user_id']; ?>">Tình cảm</a>
-                            <a href="Theloai.php?genre=Học đường&user_id=<?php echo $_SESSION['user_id']; ?>">Học đường</a>
-                            <a href="Theloai.php?genre=Võ thuật&user_id=<?php echo $_SESSION['user_id']; ?>">Võ thuật</a>
-                            <a href="Theloai.php?genre=Tài liệu&user_id=<?php echo $_SESSION['user_id']; ?>">Tài liệu</a>
-                        </div>
-                        <div class="column">
-                            <a href="Theloai.php?genre=Viễn tưởng&user_id=<?php echo $_SESSION['user_id']; ?>">Viễn tưởng</a>
-                            <a href="Theloai.php?genre=Hoạt hình&user_id=<?php echo $_SESSION['user_id']; ?>">Hoạt hình</a>
-                            <a href="Theloai.php?genre=Thể thao&user_id=<?php echo $_SESSION['user_id']; ?>">Thể thao</a>
-                            <a href="Theloai.php?genre=Âm nhạc&user_id=<?php echo $_SESSION['user_id']; ?>">Âm nhạc</a>
-                            <a href="Theloai.php?genre=Gia đình&user_id=<?php echo $_SESSION['user_id']; ?>">Gia đình</a>
-                            <a href="Theloai.php?genre=Kinh dị&user_id=<?php echo $_SESSION['user_id']; ?>">Kinh dị</a>
-                            <a href="Theloai.php?genre=Tâm lý&user_id=<?php echo $_SESSION['user_id']; ?>">Tâm lý</a>
+                        <div class="navbar">
+                            <a href="TrangChu.html" class="nav-link">
+                                <i class="bx bx-home"></i>
+                                <span class="nav-link-title">Trang chủ</span>
+                            </a>
+                            <a href="#home" class="nav-link">
+                                <i class="bx bxs-hot"></i>
+                                <span class="nav-link-title">Thịnh hành</span>
+                            </a>
+                            <a href="PhimBo.php" class="nav-link">
+                                <i class="bx bxs-movie"></i>
+                                <span class="nav-link-title">Phim bộ</span>
+                            </a>
+                            <a href="PhimLe.php" class="nav-link">
+                                <i class="bx bxs-film"></i>
+                                <span class="nav-link-title">Phim lẻ</span>
+                            </a>
+
+                            <div class="dropdown-toggle-container" id="genre-dropdown-toggle">
+                <a href="#" class="nav-link dropdown">
+                    <i class="bx bx-category nav-link-icon"></i>
+                    <span class="nav-link-title">Thể loại</span>
+                 </a>
+                 <div class="dropdown-content">
+                 <div class="column">
+                     <a href="Theloai.php?genre=Hài hước">Hài hước</a>
+                     <a href="Theloai.php?genre=Hành động">Hành động</a>
+                     <a href="Theloai.php?genre=Phiêu lưu">Phiêu lưu</a>
+                     <a href="Theloai.php?genre=Tình cảm">Tình cảm</a>
+                     <a href="Theloai.php?genre=Học đường">Học đường</a>
+                     <a href="Theloai.php?genre=Võ thuật">Võ thuật</a>
+                     <a href="Theloai.php?genre=Tài liệu">Tài liệu</a>
+         
+                 </div>
+                 <div class="column">
+                     <a href="Theloai.php?genre=Viễn tưởng">Viễn tưởng</a>
+                     <a href="Theloai.php?genre=Hoạt hình">Hoạt hình</a>
+                     <a href="Theloai.php?genre=Thể thao">Thể thao</a>
+                     <a href="Theloai.php?genre=Âm nhạc">Âm nhạc</a>
+                     <a href="Theloai.php?genre=Gia đình">Gia đình</a>
+                     <a href="Theloai.php?genre=Kinh dị">Kinh dị</a>
+                     <a href="Theloai.php?genre=Tâm lý">Tâm lý</a>
+                 </div>
+                 <!-- Thêm các thể loại khác tương ứng với các option -->
+             </div>
+         
+             </div>
+             
+                            <a href="#home" class="nav-link">
+                                <i class="bx bx-heart"></i>
+                                <span class="nav-link-title">Yêu thích</span>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <a href="#home" class="nav-link">
-                    <i class="bx bx-heart nav-link-icon"></i>
-                    <span class="nav-link-title">Yêu thích</span>
-                </a>
-            </div>
-        </div>
                 </header>
                 <section class="movie-details container">
                   <div class="container">

@@ -74,20 +74,6 @@ if (isset($_POST['noidung'])) {
     <!-- Box Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="dropdown.css">
-    <style>
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-info img {
-            width: 250px;
-            height:350px;
-            object-fit: cover;
-            margin-right: 1rem;
-            margin-bottom:30px;
-        }
-    </style>
 </head>
 <body>
     <header>
