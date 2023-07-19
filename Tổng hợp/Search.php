@@ -66,7 +66,6 @@ if (isset($_POST['noidung'])) {
     <title>ManhwaMovies</title>
     <!-- Link to CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="./search.css">
     <!-- Link Swiper CSS-->
     <link rel="stylesheet" href="css/cdn.jsdelivr.net_npm_swiper@10.0.4_swiper-bundle.min.css">
     <!-- Fav Icon -->
