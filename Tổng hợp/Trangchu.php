@@ -119,7 +119,7 @@ $connection->close();
                      </div>
                 
                  
-                <a href="Yeuthich.php" class="nav-link">
+                     <a href="Yeuthich.php?user_id=<?php echo  $_SESSION['user_id']; ?>" class="nav-link">
                     <i class='bx bx-heart'></i>
                     <span class="nav-link-title">Yêu thích</span>
                 </a>
